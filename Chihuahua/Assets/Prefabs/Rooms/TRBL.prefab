@@ -296,11 +296,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adjacentLocations:
-  - {fileID: 2008871957327614769}
-  - {fileID: 1958370056626964291}
   - {fileID: 3130632630383557031}
   - {fileID: 1958370056626964291}
+  - {fileID: 2008871957327614769}
+  - {fileID: 4506022226200270148}
   roomActive: 0
+  barrier: {fileID: 495724462278951970, guid: d46a094fbfdc3b34ba5cbc59fcf2b56d, type: 3}
 --- !u!61 &94373726
 BoxCollider2D:
   m_ObjectHideFlags: 0

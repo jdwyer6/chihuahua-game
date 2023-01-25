@@ -375,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adjacentLocations: []
   roomActive: 0
+  barrier: {fileID: 495724462278951970, guid: d46a094fbfdc3b34ba5cbc59fcf2b56d, type: 3}
 --- !u!61 &7220552202241169339
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -410,6 +410,7 @@ MonoBehaviour:
   - {fileID: 6165159162106935343}
   - {fileID: 5922279647137452575}
   roomActive: 0
+  barrier: {fileID: 495724462278951970, guid: d46a094fbfdc3b34ba5cbc59fcf2b56d, type: 3}
 --- !u!61 &1917761509398246316
 BoxCollider2D:
   m_ObjectHideFlags: 0

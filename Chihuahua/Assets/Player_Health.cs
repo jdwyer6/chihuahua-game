@@ -41,7 +41,7 @@ public class Player_Health : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Enemy"){
             if(canTakeDamage == true){
                 StartCoroutine(TakeDamage());
@@ -49,6 +49,7 @@ public class Player_Health : MonoBehaviour
             
         }
     }
+
 
     IEnumerator TakeDamage(){
         canTakeDamage = false;

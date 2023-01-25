@@ -11,11 +11,14 @@ public class Enemy_1 : MonoBehaviour
 
     AudioManager am;
 
+    public SpriteRenderer spriteRenderer;
+
     float timer;
     public float stamina;
     public int health;
 
     public GameObject enemyHitParticles;
+    public GameObject boneParticles;
     public GameObject bloodSplat;
 
     public bool fullSpeed = true;
@@ -40,6 +43,7 @@ public class Enemy_1 : MonoBehaviour
         if(health <= 0){
             am.Play("Enemy_Death_0");
             Instantiate(bloodSplat, transform.position, Quaternion.identity);
+            Instantiate(enemyHitParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -57,9 +61,23 @@ public class Enemy_1 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Bone"){
             health -= 1;
-            Instantiate(enemyHitParticles, other.transform.position, Quaternion.identity);
             am.Play("Hit");
+            StartCoroutine(DamagePause(Color.red));
+            Instantiate(boneParticles, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }
+
+        if(other.gameObject.tag == "Player"){
+            StartCoroutine(DamagePause(Color.gray));
+        }
+    }
+
+    IEnumerator DamagePause(Color colorToChange){
+        var tempSpeed = speed;
+        speed = 0;
+        spriteRenderer.color = colorToChange;
+        yield return new WaitForSeconds(.3f);
+        spriteRenderer.color = Color.white;
+        speed = tempSpeed;
     }
 }

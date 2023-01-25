@@ -11,6 +11,7 @@ public class RoomSpawner : MonoBehaviour
     private Camera cam;
 
     private GameObject gm;
+    public GameObject barrier;
 
     void Awake(){
         cam = FindObjectOfType<Camera>();
@@ -21,6 +22,8 @@ public class RoomSpawner : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("GM").GetComponent<LevelGeneration>().roomsGenerated < GameObject.FindGameObjectWithTag("GM").GetComponent<LevelGeneration>().maxRooms){
             SpawnRoom();
         }
+
+        CloseExits();
     }
 
     private void Update() {
@@ -74,6 +77,14 @@ public class RoomSpawner : MonoBehaviour
                     gm.GetComponent<LevelGeneration>().usedSpawnLocations.Add(new Vector2(randomAdjLocation.position.x, randomAdjLocation.position.y));
                 }
 
+        }
+    }
+
+    void CloseExits(){
+        foreach (var location in adjacentLocations){
+            if(!gm.GetComponent<LevelGeneration>().usedSpawnLocations.Contains(location.position)){
+                Instantiate(barrier, location.position, Quaternion.identity);
+            }
         }
     }
 

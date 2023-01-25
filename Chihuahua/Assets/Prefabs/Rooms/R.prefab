@@ -144,6 +144,7 @@ MonoBehaviour:
   adjacentLocations:
   - {fileID: 7170894380396946606}
   roomActive: 0
+  barrier: {fileID: 495724462278951970, guid: d46a094fbfdc3b34ba5cbc59fcf2b56d, type: 3}
 --- !u!61 &8804242034077012240
 BoxCollider2D:
   m_ObjectHideFlags: 0

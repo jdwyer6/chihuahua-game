@@ -1065,7 +1065,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
+  m_Color: {r: 0.24528301, g: 0.056692775, b: 0.056692775, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1252,6 +1252,7 @@ MonoBehaviour:
   - {fileID: 4069822248214926556}
   - {fileID: 6736429085607331336}
   roomActive: 0
+  barrier: {fileID: 495724462278951970, guid: d46a094fbfdc3b34ba5cbc59fcf2b56d, type: 3}
 --- !u!61 &8603505029298570141
 BoxCollider2D:
   m_ObjectHideFlags: 0

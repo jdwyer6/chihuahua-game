@@ -30,13 +30,44 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Walk", false);
 
         }
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)){
-            anim.SetBool("Throw", true);
+
+        if(Input.GetKeyDown(KeyCode.UpArrow)){
+            anim.SetBool("ThrowUp", true);
             anim.SetLayerWeight(1, 1);
-        }else{
-            anim.SetBool("Throw", false);
-            anim.SetLayerWeight(1, 0);
         }
+        if(Input.GetKeyUp(KeyCode.UpArrow)){
+            anim.SetLayerWeight(1, 0);
+            anim.SetBool("ThrowUp", false);
+        }
+        
+        // if(Input.GetKey(KeyCode.DownArrow)){
+        //     anim.SetBool("ThrowDown", true);
+        //     anim.SetLayerWeight(1, 1);
+        // }else if(Input.GetKey(KeyCode.LeftArrow)){
+        //     if(moveX > 0){
+        //         anim.SetBool("ThrowBack", true);
+        //     }
+        //     if(moveX < 0){
+        //         anim.SetBool("ThrowForward", true);
+        //     }
+        //     anim.SetLayerWeight(1, 1);
+        // }else if(Input.GetKey(KeyCode.RightArrow)){
+        //     if(moveX > 0){
+        //         anim.SetBool("ThrowForward", true);
+        //     }
+        //     if(moveX < 0){
+        //         anim.SetBool("ThrowBack", true);
+        //     }
+        //     anim.SetLayerWeight(1, 1);
+        // }
+        // }else{
+        //     
+        //     anim.SetBool("ThrowDown", false);
+        //     anim.SetBool("ThrowBack", false);
+        //     anim.SetBool("ThrowForward", false);
+        //     
+        // }
+
 
         moveDirection = new Vector2(moveX, moveY).normalized;
 
