@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GM
+  - Enemy
+  - Bone
+  - Room
+  - DoorBottom
+  - DoorRight
+  - DoorTop
+  - B
+  - L
+  - R
+  - T
   layers:
   - Default
   - TransparentFX
@@ -40,4 +51,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1438779649
+    locked: 0
+  - name: Player
+    uniqueID: 2122388035
+    locked: 0
+  - name: Effects
+    uniqueID: 1316502081
+    locked: 0
+  - name: Foreground
+    uniqueID: 3729822069
     locked: 0

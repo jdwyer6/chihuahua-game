@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 6801353326991298123}
   - component: {fileID: 2507303140345940995}
   - component: {fileID: 3376275676279896940}
+  - component: {fileID: 1761157522150924350}
   m_Layer: 0
   m_Name: TRB
   m_TagString: Room
@@ -232,6 +233,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 10}
   m_EdgeRadius: 0
+--- !u!210 &1761157522150924350
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3309443649838734031}
+  m_Enabled: 1
+  m_SortingLayerID: 1438779649
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &3376275675809612585
 GameObject:
   m_ObjectHideFlags: 0
