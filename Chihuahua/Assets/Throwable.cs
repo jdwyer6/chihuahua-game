@@ -7,6 +7,7 @@ public class Throwable : MonoBehaviour
     public float lifeTime;
     float timer;
 
+
     private void Start() {
         timer = lifeTime;
     }

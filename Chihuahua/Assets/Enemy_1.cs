@@ -6,15 +6,19 @@ public class Enemy_1 : MonoBehaviour
 {
     private GameObject player;
     public float speed;
+    private float startingSpeed;
     public float slowSpeed;
     float distance;
 
     AudioManager am;
+    public Rigidbody2D rb;
 
     public SpriteRenderer spriteRenderer;
 
     float timer;
     public float stamina;
+    public float damageTimeStart = .3f;
+    public bool canMove = true;
     public int health;
 
     public GameObject enemyHitParticles;
@@ -29,22 +33,29 @@ public class Enemy_1 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         timer = stamina;
         am = FindObjectOfType<AudioManager>();
+        startingSpeed = speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        if(timer <= 0){
-            timer = stamina;
-            fullSpeed = !fullSpeed;
-        }
+        // timer -= Time.deltaTime;
+        // if(timer <= 0){
+        //     timer = stamina;
+        //     fullSpeed = !fullSpeed;
+        // }
 
         if(health <= 0){
             am.Play("Enemy_Death_0");
             Instantiate(bloodSplat, transform.position, Quaternion.identity);
             Instantiate(enemyHitParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+
+        if(canMove == false){
+            speed = 0;
+        }else{
+            speed = startingSpeed;
         }
 
     }
@@ -68,16 +79,18 @@ public class Enemy_1 : MonoBehaviour
         }
 
         if(other.gameObject.tag == "Player"){
+            Vector2 dir = transform.position - other.gameObject.transform.position;
+            rb.AddForce(dir * 1, ForceMode2D.Impulse);
             StartCoroutine(DamagePause(Color.gray));
         }
+
     }
 
     IEnumerator DamagePause(Color colorToChange){
-        var tempSpeed = speed;
-        speed = 0;
+        canMove = false;
         spriteRenderer.color = colorToChange;
         yield return new WaitForSeconds(.3f);
         spriteRenderer.color = Color.white;
-        speed = tempSpeed;
+        canMove = true;
     }
 }

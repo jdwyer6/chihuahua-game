@@ -13,6 +13,7 @@ public class LevelGeneration : MonoBehaviour
     public GameObject[] rights;
 
     public List<Vector2> usedSpawnLocations;
+    public GameObject[] enemies;
 
     private void Awake() {
         usedSpawnLocations.Add(new Vector2(0, 0));

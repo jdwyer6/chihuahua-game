@@ -8,14 +8,21 @@ public class RoomSpawner : MonoBehaviour
     public List <Transform> adjacentLocations;
 
     public bool roomActive = false;
-    private Camera cam;
+    private GameObject cam;
 
     private GameObject gm;
     public GameObject barrier;
 
+    string[] levelTypes = new string[] {"home", "boss", "enemy", "item"}; 
+    public string levelType;
+    public bool isHome = false;
+
+    private GameObject spawnedEnemies;
+
     void Awake(){
-        cam = FindObjectOfType<Camera>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
         gm = GameObject.FindGameObjectWithTag("GM");
+        levelType = levelTypes[Random.Range(0, levelTypes.Length)];
     }
 
     void Start(){
@@ -24,12 +31,26 @@ public class RoomSpawner : MonoBehaviour
         }
 
         CloseExits();
+        if(levelType == "enemy" && isHome == false){
+            Debug.Log(true);
+            SpawnEnemies();
+        }
+        
     }
 
     private void Update() {
         if(roomActive == true){
             cam.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+            if(spawnedEnemies != null){
+                spawnedEnemies.SetActive(true);
+            }
+            
+        }else{
+            if(spawnedEnemies != null){
+                spawnedEnemies.SetActive(false);
+            }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -86,6 +107,13 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(barrier, location.position, Quaternion.identity);
             }
         }
+    }
+
+    void SpawnEnemies(){
+        var newEnemy = Instantiate(gm.GetComponent<LevelGeneration>().enemies[Random.Range(0, gm.GetComponent<LevelGeneration>().enemies.Length)], transform.position, Quaternion.identity);
+        newEnemy.transform.SetParent(transform, true);
+        spawnedEnemies = newEnemy;
+        newEnemy.SetActive(false);
     }
 
 

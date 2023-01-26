@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player_Health : MonoBehaviour
 {
@@ -11,16 +12,27 @@ public class Player_Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public Animator anim;
+    private AudioManager am;
+
+    public SpriteRenderer spriteRenderer;
+
 
     public float rechargeTimer;
     bool canTakeDamage = true;
 
-
+    private void Start() {
+        am = FindObjectOfType<AudioManager>();
+    }
 
     // Update is called once per frame
     void Update(){
         if(health > numOfHearts){
             health = numOfHearts;
+        }
+
+        if(health <= 0){
+            StartCoroutine(Die());
         }
         
         for (int i = 0; i < hearts.Length; i++){
@@ -54,7 +66,17 @@ public class Player_Health : MonoBehaviour
     IEnumerator TakeDamage(){
         canTakeDamage = false;
         health -= 1;
+        anim.SetTrigger("Hurt");
+        am.Play("Hurt");
+        spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(rechargeTimer);
+        spriteRenderer.color = Color.white;
         canTakeDamage = true;
+    }
+
+    IEnumerator Die(){
+
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
     }
 }
