@@ -68,6 +68,7 @@ public class Player_Health : MonoBehaviour
         health -= 1;
         anim.SetTrigger("Hurt");
         am.Play("Hurt");
+        am.Play("PlayerIsHit");
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(rechargeTimer);
         spriteRenderer.color = Color.white;
